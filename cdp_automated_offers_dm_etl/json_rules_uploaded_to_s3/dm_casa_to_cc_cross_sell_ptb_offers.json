@@ -4,7 +4,7 @@
   "logic": "AND",
   "rules": [
     {
-      "field": "bbn",
+      "field": "base.bbn", 
       "operator": "IS NOT BLANK"
     },
     {
