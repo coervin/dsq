@@ -1,22 +1,117 @@
 {
   "enabled": true,
   "version": "1",
+  "logic": "AND",
   "rules": [
-    { "field": "is_with_al_flag", "operator": "=", "value": 0 },
-    { "field": "is_with_salad_flag", "operator": "=", "value": 0 },
-    { "field": "is_with_csl_flag", "operator": "=", "value": 0 },
-    { "field": "depo_mob_count", "operator": ">=", "value": 3 },
-    { "field": "age", "operator": "BETWEEN", "value": [21, 62] },
-    { "field": "adb_3m_avg", "operator": ">=", "value": 100000 },
-    { "field": "deposit_ob", "operator": ">=", "value": 10000 },
-    { "field": "is_with_pl_acct_woff_flag", "operator": "=", "value": 0 },
-    { "field": "is_non_indiv_flag", "operator": "=", "value": 0 },
-    { "field": "is_dosri_flag", "operator": "=", "value": 0 },
-    { "field": "is_enfis_flag", "operator": "=", "value": 0 },
-    { "field": "is_risk_industry_flag", "operator": "=", "value": 0 },
-    { "field": "b_score_cc_value", "operator": ">=", "value": 581 },
-    { "field": "is_with_pl_flag", "operator": "=", "value": 0 },
-    { "field": "client_segment_name", "operator": "!= (IGNORE CASE)", "value": "wealth" },
-    { "field": "max_loan_amount", "operator": "BETWEEN", "value": [400000, 5000000] }
+    {
+      "field": "is_with_al_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_with_salad_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_with_csl_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "logic": "OR",
+      "rules": [
+        {
+          "logic": "AND",
+          "rules": [
+            { "field": "is_payroll_acct_flag", "operator": "=", "value": 0 },
+            { "field": "is_acct_payroll_like_flag", "operator": "=", "value": 0 },
+            { "field": "depo_mob_count", "operator": ">=", "value": 3 }
+          ]
+        },
+        {
+          "logic": "AND",
+          "rules": [
+            {
+              "logic": "OR",
+              "rules": [
+                { "field": "is_payroll_acct_flag", "operator": "=", "value": 1 },
+                { "field": "is_acct_payroll_like_flag", "operator": "=", "value": 1 }
+              ]
+            },
+            { "field": "depo_mob_count", "operator": ">=", "value": 3 }
+          ]
+        }
+      ]
+    },
+    {
+      "field": "age",
+      "operator": "BETWEEN",
+      "value": [21, 62]
+    },
+    {
+      "field": "adb_3m_avg",
+      "operator": ">=",
+      "value": 100000
+    },
+    {
+      "field": "deposit_ob",
+      "operator": ">=",
+      "value": 10000
+    },
+    {
+      "field": "is_with_pl_acct_woff_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_non_indiv_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_dosri_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_enfis_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_risk_industry_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "b_score_cc_value",
+      "operator": ">=",
+      "value": 581
+    },
+    {
+      "field": "is_with_pl_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "client_segment_name",
+      "operator": "!= (IGNORE CASE TRIM)",
+      "value": "WEALTH"
+    },
+    {
+      "field": "is_with_al_application_6m_flag",
+      "operator": "!=",
+      "value": 1
+    },
+    {
+      "field": "is_with_cc_application_flag",
+      "operator": "!=",
+      "value": 1
+    },
+    {
+      "field": "full_name",
+      "operator": "IS NOT BLANK"
+    }
   ]
 }

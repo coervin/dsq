@@ -1,13 +1,46 @@
 {
   "enabled": true,
   "version": "1",
+  "logic": "AND",
   "rules": [
-    { "field": "is_non_indiv_flag", "operator": "=", "value": 0 },
-    { "field": "is_with_hl_application_flag", "operator": "=", "value": 0 },
-    { "field": "is_dosri_flag", "operator": "=", "value": 0 },
-    { "field": "is_no_segment_flag", "operator": "=", "value": 0 },
-    { "field": "is_with_hl_flag", "operator": "=", "value": 0 },
-    { "field": "client_segment_name", "operator": "!= (IGNORE CASE)", "value": "wealth" },
-    { "field": "age", "operator": "BETWEEN", "value": [21, 65] }
+    {
+      "field": "bbn",
+      "operator": "IS NOT NULL"
+    },
+    {
+      "field": "is_non_indiv_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_with_hl_application_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_dosri_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_no_segment_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_with_hl_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "client_segment_name",
+      "operator": "!= (IGNORE CASE TRIM)",
+      "value": "WEALTH"
+    },
+    {
+      "field": "age",
+      "operator": "BETWEEN",
+      "value": [21, 65]
+    }
   ]
 }

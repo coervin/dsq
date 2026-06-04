@@ -1,5 +1,5 @@
 {
   "enabled": true,
-  "version": "1",
+  "logic": "AND",
   "rules": []
 }

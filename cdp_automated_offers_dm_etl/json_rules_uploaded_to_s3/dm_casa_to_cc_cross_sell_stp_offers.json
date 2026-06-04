@@ -1,20 +1,95 @@
 {
   "enabled": true,
   "version": "1",
+  "logic": "AND",
   "rules": [
-    { "field": "is_non_indiv_flag", "operator": "=", "value": 0 },
-    { "field": "is_dosri_flag", "operator": "=", "value": 0 },
-    { "field": "is_enfis_flag", "operator": "=", "value": 0 },
-    { "field": "is_dnc_flag", "operator": "=", "value": 0 },
-    { "field": "is_risk_industry_flag", "operator": "=", "value": 0 },
-    { "field": "client_segment_name", "operator": "!= (IGNORE CASE)", "value": "WEALTH" },
-    { "field": "is_card_canc_12m_flag", "operator": "=", "value": 0 },
-    { "field": "is_with_credit_card_flag", "operator": "=", "value": 0 },
-    { "field": "is_with_cc_application_flag", "operator": "=", "value": 0 },
-    { "field": "is_with_cc_propensity_flag", "operator": "=", "value": 1 },
-    { "field": "age", "operator": "BETWEEN", "value": [21, 62] },
-    { "field": "depo_mob_criteria_pass_flag", "operator": "=", "value": 1 },
-    { "field": "adb_3m_avg", "operator": ">=", "value": 31250 },
-    { "field": "is_with_pl_acct_woff_flag", "operator": "=", "value": 0 }
+    {
+      "field": "bbn",
+      "operator": "IS NOT NULL"
+    },
+    {
+      "field": "is_non_indiv_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_dosri_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_enfis_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_dnc_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_risk_industry_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "client_segment_name",
+      "operator": "!= (IGNORE CASE TRIM)",
+      "value": "WEALTH"
+    },
+    {
+      "field": "is_card_canc_12m_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_with_credit_card_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_with_cc_application_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_with_cc_propensity_flag",
+      "operator": "=",
+      "value": 1
+    },
+    {
+      "field": "age",
+      "operator": "BETWEEN",
+      "value": [21, 62]
+    },
+    {
+      "logic": "OR",
+      "rules": [
+        {
+          "logic": "AND",
+          "rules": [
+            { "field": "is_payroll_acct_flag", "operator": "=", "value": 1 },
+            { "field": "depo_mob_count", "operator": ">=", "value": 12 }
+          ]
+        },
+        {
+          "logic": "AND",
+          "rules": [
+            { "field": "is_payroll_acct_flag", "operator": "=", "value": 0 },
+            { "field": "depo_mob_count", "operator": ">=", "value": 3 }
+          ]
+        }
+      ]
+    },
+    {
+      "field": "adb_3m_avg",
+      "operator": ">=",
+      "value": 31250
+    },
+    {
+      "field": "is_with_pl_acct_woff_flag",
+      "operator": "=",
+      "value": 0
+    }
   ]
 }

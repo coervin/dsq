@@ -29,7 +29,7 @@
       "value": 0
     },
     {
-      "field": "client_segment_code",
+      "field": "client_segment_name",
       "operator": "!= (IGNORE CASE TRIM)",
       "value": "WEALTH"
     },
@@ -46,9 +46,9 @@
       "operator": "IS NOT BLANK"
     },
     {
-    "field": "full_name",
-    "operator": "NOT RLIKE (IGNORE CASE)",
-    "value": "(EMPLOYEES OF|EMPLOY|EMP NO |EMP NO\\.|EMP, NO\\.|EMP NO,|EMP\\. NO,|EMP |EMP-|EMP\\.|EMP\\(|EMP #|EMP#|EMP#\\(|EMP,|EMP\\. # |EMP, \\(|EP # |,, EMP)"
-  }
+      "field": "full_name",
+      "operator": "NOT RLIKE (IGNORE CASE)",
+      "value": "(EMPLOYEES OF|EMPLOY|EMP NO |EMP NO\\.|EMP, NO\\.|EMP NO,|EMP\\. NO,|EMP |EMP-|EMP\\.|EMP\\(|EMP #|EMP#|EMP#\\(|EMP,|EMP\\. # |EMP, \\(|EP # |,, EMP)"
+    }
   ]
 }
