@@ -1,0 +1,93 @@
+name: dm_cross_sell_base
+columns:
+  - name: bbn
+    data_type: string
+    is_pkey: true
+  - name: acct_basic_num
+    data_type: string
+  - name: external_acct_num
+    data_type: string
+    is_pkey: true
+  - name: internal_acct_num
+    data_type: string
+  - name: depo_acct_num
+    data_type: string
+  - name: credit_card_physical_num
+    data_type: string
+  - name: full_name
+    data_type: string
+  - name: first_name
+    data_type: string
+  - name: middle_name
+    data_type: string
+  - name: last_name
+    data_type: string
+  - name: age
+    data_type: integer
+  - name: client_segment_name
+    data_type: string
+  - name: is_with_credit_card_flag
+    data_type: integer
+  - name: is_with_al_flag
+    data_type: integer
+  - name: is_with_hl_flag
+    data_type: integer
+  - name: is_with_csl_flag
+    data_type: integer
+  - name: is_with_bml_flag
+    data_type: integer
+  - name: is_with_pl_flag
+    data_type: integer
+  - name: is_with_pl_acct_woff_flag
+    data_type: integer
+  - name: is_with_salad_flag
+    data_type: integer
+  - name: is_with_cc_application_flag
+    data_type: integer
+  - name: is_with_al_application_6m_flag
+    data_type: integer
+  - name: is_with_al_application_12m_flag
+    data_type: integer
+  - name: is_with_hl_application_flag
+    data_type: integer
+  - name: depo_mob_count
+    data_type: integer
+  - name: cc_mob_count
+    data_type: integer
+  - name: deposit_mtd_adb
+    data_type: decimal(38,6)
+  - name: deposit_ob
+    data_type: decimal(38,6)
+  - name: adb_3m_avg
+    data_type: decimal(18,2)
+  - name: payr_sal_6m_avg
+    data_type: decimal(18,2)
+  - name: total_relationship_balance_value
+    data_type: decimal(18,2)
+  - name: b_score_cc_value
+    data_type: double
+  - name: is_with_cc_propensity_flag
+    data_type: integer
+  - name: is_card_canc_12m_flag
+    data_type: integer
+  - name: is_dosri_flag
+    data_type: integer
+  - name: is_enfis_flag
+    data_type: integer
+  - name: is_dnc_flag
+    data_type: integer
+  - name: is_non_indiv_flag
+    data_type: integer
+  - name: is_no_segment_flag
+    data_type: integer
+  - name: is_payroll_acct_flag
+    data_type: integer
+  - name: is_acct_payroll_like_flag
+    data_type: integer
+  - name: is_risk_industry_flag
+    data_type: integer
+  - name: gmi_value
+    data_type: decimal(18,2)
+  - name: actual_date
+    data_type: date
+    is_partition_col: True

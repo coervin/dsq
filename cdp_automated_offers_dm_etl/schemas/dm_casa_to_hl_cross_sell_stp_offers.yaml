@@ -1,0 +1,158 @@
+name: dm_casa_to_hl_cross_sell_stp_offers
+columns:
+  - name: offer_code
+    data_type: string
+    is_pkey: True
+  - name: max_loan_term
+    data_type: integer
+  - name: bbn
+    data_type: string
+  - name: program_offer_type
+    data_type: string
+  - name: expiry_date
+    data_type: date
+  - name: full_name
+    data_type: string
+  - name: last_name
+    data_type: string
+  - name: first_name
+    data_type: string
+  - name: middle_name
+    data_type: string
+  - name: hl_ratecode
+    data_type: string
+  - name: max_loan_amount
+    data_type: string
+  - name: max_amortization
+    data_type: string
+  - name: product_crm
+    data_type: string
+  - name: spiel_id
+    data_type: string
+  - name: campaign_code
+    data_type: string
+  - name: earliest_acct_open_date
+    data_type: date
+  - name: age
+    data_type: integer
+  - name: leads_type
+    data_type: string
+  - name: promo
+    data_type: string
+  - name: pid_count
+    data_type: integer
+  - name: branch_region
+    data_type: string
+  - name: branch_area
+    data_type: string
+  - name: branch_mnemonic
+    data_type: string
+  - name: branch_name
+    data_type: string
+  - name: product_bundle
+    data_type: string
+  - name: new_segment
+    data_type: string
+  - name: accountnumber
+    data_type: string
+  - name: product_name
+    data_type: string
+  - name: qualified_casa
+    data_type: string
+  - name: promo_code
+    data_type: string
+  - name: ob
+    data_type: string
+  - name: ob_tier
+    data_type: string
+  - name: trb
+    data_type: string
+  - name: trb_bucket
+    data_type: string
+  - name: age_tier
+    data_type: string
+  - name: casa_acct_php
+    data_type: string
+  - name: casa_acct_usd
+    data_type: string
+  - name: deal_acct_php
+    data_type: string
+  - name: deal_acct_usd
+    data_type: string
+  - name: gold_propensity
+    data_type: integer
+  - name: age_70
+    data_type: integer
+  - name: agent_name
+    data_type: string
+  - name: purpose
+    data_type: string
+  - name: agent_remarks
+    data_type: string
+  - name: spiel
+    data_type: string
+  - name: other_card
+    data_type: string
+  - name: special_otherremarks
+    data_type: string
+  - name: timezone
+    data_type: string
+  - name: email
+    data_type: string
+  - name: gender
+    data_type: string
+  - name: civil_status
+    data_type: string
+  - name: date_of_birth
+    data_type: date
+  - name: zipcode
+    data_type: string
+  - name: employment_type
+    data_type: string
+  - name: employer_name
+    data_type: string
+  - name: occupation
+    data_type: string
+  - name: tin
+    data_type: string
+  - name: place_of_birth
+    data_type: string
+  - name: present_address
+    data_type: string
+  - name: permanent_address
+    data_type: string
+  - name: id_type
+    data_type: string
+  - name: id_number
+    data_type: string
+  - name: mother_maiden_name
+    data_type: string
+  - name: employment_status
+    data_type: string
+  - name: employer_address
+    data_type: string
+  - name: nature_of_business
+    data_type: string
+  - name: mobile_no
+    data_type: string
+  - name: mobile_no2
+    data_type: string
+  - name: home_landline1
+    data_type: string
+  - name: office_landline1
+    data_type: string
+  - name: length_of_stay
+    data_type: string
+  - name: no_of_years_employed
+    data_type: string
+  - name: year_started_working
+    data_type: string
+  - name: current_industry
+    data_type: string
+  - name: updated_industry
+    data_type: string
+  - name: updated_position
+    data_type: string
+  - name: actual_date
+    data_type: date
+    is_partition_col: True

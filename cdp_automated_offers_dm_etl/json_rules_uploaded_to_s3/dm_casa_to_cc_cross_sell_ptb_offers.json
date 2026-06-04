@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "version": "1",
+  "rules": [
+    { "field": "is_non_indiv_flag", "operator": "=", "value": 0 },
+    { "field": "is_with_cc_propensity_flag", "operator": "=", "value": 1 },
+    { "field": "is_dosri_flag", "operator": "=", "value": 0 },
+    { "field": "is_with_credit_card_flag", "operator": "=", "value": 0 },
+    { "field": "is_with_cc_application_flag", "operator": "=", "value": 0 },
+    { "field": "client_segment_name", "operator": "!= (IGNORE CASE)", "value": "Wealth" },
+    { "field": "age", "operator": "BETWEEN", "value": [21, 62] }
+  ]
+}

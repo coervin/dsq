@@ -1,0 +1,158 @@
+name: staging_cross_sell_base
+columns:
+  - name: bbn
+    data_type: string
+    is_pkey: true
+  - name: acct_basic_num
+    data_type: string
+  - name: external_acct_num
+    data_type: string
+    is_pkey: true
+  - name: internal_acct_num
+    data_type: string
+  - name: depo_acct_num
+    data_type: string
+  - name: credit_card_physical_num
+    data_type: string
+  - name: full_name
+    data_type: string
+  - name: first_name
+    data_type: string
+  - name: middle_name
+    data_type: string
+  - name: last_name
+    data_type: string
+  - name: age
+    data_type: integer
+  - name: client_segment_name
+    data_type: string
+  - name: is_with_credit_card_flag
+    data_type: integer
+  - name: is_with_al_flag
+    data_type: integer
+  - name: is_with_hl_flag
+    data_type: integer
+  - name: is_with_csl_flag
+    data_type: integer
+  - name: is_with_bml_flag
+    data_type: integer
+  - name: is_with_pl_flag
+    data_type: integer
+  - name: is_with_pl_acct_woff_flag
+    data_type: integer
+  - name: is_with_salad_flag
+    data_type: integer
+  - name: is_with_cc_application_flag
+    data_type: integer
+  - name: is_with_al_application_6m_flag
+    data_type: integer
+  - name: is_with_al_application_12m_flag
+    data_type: integer
+  - name: is_with_hl_application_flag
+    data_type: integer
+  - name: depo_mob_count
+    data_type: integer
+  - name: cc_mob_count
+    data_type: integer
+  - name: deposit_mtd_adb
+    data_type: decimal(38,6)
+  - name: deposit_ob
+    data_type: decimal(38,6)
+  - name: adb_3m_avg
+    data_type: decimal(18,2)
+  - name: payr_sal_6m_avg
+    data_type: decimal(18,2)
+  - name: total_relationship_balance_value
+    data_type: decimal(18,2)
+  - name: b_score_cc_value
+    data_type: double
+  - name: is_with_cc_propensity_flag
+    data_type: integer
+  - name: is_card_canc_12m_flag
+    data_type: integer
+  - name: is_dosri_flag
+    data_type: integer
+  - name: is_enfis_flag
+    data_type: integer
+  - name: is_dnc_flag
+    data_type: integer
+  - name: is_non_indiv_flag
+    data_type: integer
+  - name: is_no_segment_flag
+    data_type: integer
+  - name: is_payroll_acct_flag
+    data_type: integer
+  - name: is_acct_payroll_like_flag
+    data_type: integer
+  - name: is_risk_industry_flag
+    data_type: integer
+  - name: gmi_value
+    data_type: decimal(18,2)
+  - name: cust_mob_count
+    data_type: integer
+  - name: earliest_acct_open_date
+    data_type: date
+  - name: gender_code
+    data_type: string
+  - name: civil_status_code
+    data_type: string
+  - name: employment_type_code
+    data_type: string
+  - name: birthdate
+    data_type: date
+  - name: mothers_maiden_name
+    data_type: string
+  - name: birth_place_name
+    data_type: string
+  - name: present_email
+    data_type: string
+  - name: priority_mobile_no1
+    data_type: string
+  - name: priority_mobile_no2
+    data_type: string
+  - name: priority_mobile_no
+    data_type: string
+  - name: priority_home_landline1
+    data_type: string
+  - name: office_landline1
+    data_type: string
+  - name: present_zip_code
+    data_type: string
+  - name: present_address
+    data_type: string
+  - name: permanent_address
+    data_type: string
+  - name: office_address
+    data_type: string
+  - name: primary_id_type
+    data_type: string
+  - name: primary_id_number
+    data_type: string
+  - name: tin_comptin
+    data_type: string
+  - name: employer_name
+    data_type: string
+  - name: occupation_details_text
+    data_type: string
+  - name: nature_of_work_code
+    data_type: string
+  - name: is_mobile_valid_flag
+    data_type: integer
+  - name: is_email_valid_flag
+    data_type: integer
+  - name: branch_code
+    data_type: string
+  - name: branch_name
+    data_type: string
+  - name: branch_area_code
+    data_type: string
+  - name: branch_region_name
+    data_type: string
+  - name: branch_mnemonic
+    data_type: string
+  - name: new_segment
+    data_type: string
+  - name: expiry_date
+    data_type: date
+  - name: actual_date
+    data_type: date

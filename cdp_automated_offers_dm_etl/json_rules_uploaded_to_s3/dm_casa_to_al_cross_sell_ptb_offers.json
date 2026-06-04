@@ -1,0 +1,54 @@
+{
+  "enabled": true,
+  "version": "2",
+  "logic": "AND",
+  "rules": [
+    {
+      "field": "is_non_indiv_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_with_al_application_12m_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_dosri_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_no_segment_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "is_with_al_flag",
+      "operator": "=",
+      "value": 0
+    },
+    {
+      "field": "client_segment_code",
+      "operator": "!= (IGNORE CASE TRIM)",
+      "value": "WEALTH"
+    },
+    {
+      "field": "age",
+      "operator": "BETWEEN",
+      "value": [
+        20,
+        64
+      ]
+    },
+    {
+      "field": "full_name",
+      "operator": "IS NOT BLANK"
+    },
+    {
+    "field": "full_name",
+    "operator": "NOT RLIKE (IGNORE CASE)",
+    "value": "(EMPLOYEES OF|EMPLOY|EMP NO |EMP NO\\.|EMP, NO\\.|EMP NO,|EMP\\. NO,|EMP |EMP-|EMP\\.|EMP\\(|EMP #|EMP#|EMP#\\(|EMP,|EMP\\. # |EMP, \\(|EP # |,, EMP)"
+  }
+  ]
+}
