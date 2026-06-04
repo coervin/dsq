@@ -34,8 +34,8 @@
     },
     {
       "field": "client_segment_name",
-      "operator": "!= (IGNORE CASE TRIM)",
-      "value": "WEALTH"
+      "operator": "!=",
+      "value": "wealth"
     },
     {
       "field": "age",
