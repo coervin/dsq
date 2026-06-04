@@ -61,11 +61,11 @@ base_deduped AS (
   FROM
     staging_cross_sell_base cross_sell
   WHERE
-    cross_sell.bbn IS NOT NULL
-    AND NOT (
-      cross_sell.b_score_cc_value > 0
-      AND cross_sell.b_score_cc_value < 581
-    )
+    -- ==========================================
+    -- INJECTED DYNAMIC JSON RULES
+    -- ==========================================
+    {dynamic_json_rules}
+    -- ==========================================
 ),
 base_calculations AS (
   SELECT
@@ -85,6 +85,8 @@ base_calculations AS (
     LEFT JOIN loan_rollup loans ON base.bbn = loans.bbn
   WHERE
     base.rn = 1
+    
+    -- Join structural filters retained
     AND COALESCE(loans.has_hl_al_pl, 0) = 0
     AND NOT (
       loans.hl_mob IS NOT NULL
@@ -267,7 +269,8 @@ dedup_stp_hl AS (
   LEFT JOIN active_offers existing_offer
     ON base.bbn = existing_offer.bbn
   WHERE
-    existing_offer.bbn IS NULL
+    base.raw_max_loan_amount >= 1000000
+    AND existing_offer.bbn IS NULL
 )
 SELECT
   CONCAT(
@@ -285,18 +288,7 @@ SELECT
     )
   ) AS offer_code,
   dedup_stp_hl.*,
-  DATE '{actual_date}' AS actual_date,
-  is_non_indiv_flag,
-  is_dosri_flag,
-  is_enfis_flag,
-  is_dnc_flag,
-  is_risk_industry_flag,
-  client_segment_name,
-  is_with_salad_flag,
-  is_with_csl_flag,
-  is_with_pl_acct_woff_flag,
-  adb_3m_avg,
-  raw_max_loan_amount
+  DATE '{actual_date}' AS actual_date
 FROM
   dedup_stp_hl
 CROSS JOIN max_offer_seq

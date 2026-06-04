@@ -88,34 +88,15 @@ WITH eom_df_pm_eq AS (
     LEFT JOIN recent_loan_booking recent
         ON base.bbn = recent.bbn
     WHERE
-        base.is_with_al_flag = 0
-        AND base.is_with_salad_flag = 0
-        AND base.is_with_csl_flag = 0
-        AND (
-            (
-                base.is_payroll_acct_flag = 0 AND base.is_acct_payroll_like_flag = 0 AND base.depo_mob_count >= 3
-            )
-            OR
-            (
-                (base.is_payroll_acct_flag = 1 OR base.is_acct_payroll_like_flag = 1) AND base.depo_mob_count >= 3
-            )
-        )
-        AND base.age BETWEEN 21 AND 62
-        AND NOT base.adb_3m_avg < 100000
-        AND NOT base.deposit_ob < 10000
+        -- ==========================================
+        -- INJECTED DYNAMIC JSON RULES
+        -- ==========================================
+        {dynamic_json_rules}
+        -- ==========================================
+        
+        -- Join structural filters retained
         AND el.loan_criteria_pass = 1
-        AND base.is_with_pl_acct_woff_flag = 0
-        AND base.is_non_indiv_flag = 0
-        AND base.is_dosri_flag = 0
-        AND base.is_enfis_flag = 0
-        AND base.is_risk_industry_flag = 0
-        AND base.b_score_cc_value >= 581
-        AND base.is_with_pl_flag = 0
-        AND LOWER(base.client_segment_name) <> 'wealth'
-        AND NOT base.is_with_al_application_6m_flag = 1
-        AND NOT base.is_with_cc_application_flag = 1
         AND recent.bbn IS NULL
-        AND NULLIF(base.full_name, '') IS NOT NULL
 )
 , vw_casa_to_al_stp AS (
     SELECT DISTINCT
@@ -221,7 +202,6 @@ WITH eom_df_pm_eq AS (
         actual_date
     FROM base_casa_to_al_stp
 )
-
 SELECT
     CONCAT(
         'AL',

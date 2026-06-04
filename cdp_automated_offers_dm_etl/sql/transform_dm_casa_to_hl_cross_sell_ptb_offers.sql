@@ -17,7 +17,14 @@ WITH active_offers AS (
         *,
         ROW_NUMBER() OVER (PARTITION BY bbn ORDER BY bbn) AS rn
     FROM staging_cross_sell_base base
-    WHERE bbn IS NOT NULL
+    WHERE 
+        -- ==========================================
+        -- INJECTED DYNAMIC JSON RULES
+        -- ==========================================
+        {dynamic_json_rules}
+        -- ==========================================
+        
+        -- Join structural filters retained
         AND NOT EXISTS (
             SELECT 1 FROM dm_casa_to_hl_cross_sell_stp_offers_for_month stp_hl
             WHERE base.bbn = stp_hl.bbn
@@ -51,22 +58,21 @@ SELECT
     base.new_segment AS deposit_segment_current_desc,
     base.branch_code,
     CONCAT(
-    'HL',
-    'PTB',
-    date_format(DATE '{actual_date}', 'MM'),
-    date_format(DATE '{actual_date}', 'yy'),
-    'B',
-    LPAD(
-      CAST(
-        row_number() OVER (
-          ORDER BY
-            base.bbn
-        ) + max_offer_seq.max_seq AS STRING
-      ),
-      7,
-      '0'
-    )
-  ) AS offer_code,
+        'HL',
+        'PTB',
+        date_format(DATE '{actual_date}', 'MM'),
+        date_format(DATE '{actual_date}', 'yy'),
+        'B',
+        LPAD(
+            CAST(
+                row_number() OVER (
+                    ORDER BY base.bbn
+                ) + max_offer_seq.max_seq AS STRING
+            ),
+            7,
+            '0'
+        )
+    ) AS offer_code,
     'PTB' AS offer_type_desc,
     'HL' AS product_crm_code,
     'HL Propensity' AS spiel_id_desc,
@@ -82,7 +88,6 @@ SELECT
             'NONE@YAHOO.COM','NA@YAHOO.COM'
         ) THEN 'N'
         WHEN base.present_email NOT LIKE '%@%' THEN 'N'
-
         WHEN NOT RLIKE(base.present_email, '[A-Za-z]') THEN 'N'
         WHEN LOWER(SPLIT(base.present_email, '@')[0]) IN (
             'raymond.nunez+sbc',
@@ -134,14 +139,7 @@ SELECT
         ELSE 'N'
     END AS is_for_branch_flag,
     base.expiry_date,
-    DATE'{actual_date}' AS actual_date,
-    is_non_indiv_flag,
-    is_with_hl_application_flag,
-    is_dosri_flag,
-    is_no_segment_flag,
-    is_with_hl_flag,
-    client_segment_name,
-    age
+    DATE'{actual_date}' AS actual_date
 FROM base_deduped base
 LEFT JOIN casatohlptb ptb
     ON ptb.bbn = base.bbn

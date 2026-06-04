@@ -54,20 +54,21 @@ WITH active_loans AS (
 )
 , src AS (
     SELECT
-        staging_cross_sell_base.*,
-        ROW_NUMBER() OVER (PARTITION BY staging_cross_sell_base.bbn ORDER BY staging_cross_sell_base.bbn) AS rn,
+        *,
+        ROW_NUMBER() OVER (PARTITION BY bbn ORDER BY bbn) AS rn,
         CASE
             WHEN is_payroll_acct_flag = 1 THEN CAST(payr_sal_6m_avg AS double)
             WHEN is_payroll_acct_flag = 0 THEN 0.4 * CAST(adb_3m_avg AS double)
-        END AS raw_cl,
-        CASE 
-            WHEN (is_payroll_acct_flag = 1 AND depo_mob_count >= 12)
-              OR (is_payroll_acct_flag = 0 AND depo_mob_count >= 3)
-            THEN 1 ELSE 0 
-        END AS depo_mob_criteria_pass_flag
+        END AS raw_cl
     FROM staging_cross_sell_base
     WHERE
-        staging_cross_sell_base.bbn IS NOT NULL
+        -- ==========================================
+        -- INJECTED DYNAMIC JSON RULES
+        -- ==========================================
+        {dynamic_json_rules}
+        -- ==========================================
+
+        -- Join structural filters retained
         AND NOT EXISTS (SELECT 1 FROM loan_criteria_pass_per_cust lcppc WHERE staging_cross_sell_base.bbn = lcppc.bbn)
         AND NOT EXISTS (SELECT 1 FROM non_current_flag ncf WHERE staging_cross_sell_base.bbn = ncf.bbn)
 )
@@ -264,20 +265,7 @@ SELECT DISTINCT
     CAST (NULL AS STRING) AS current_industry,
     CAST (NULL AS STRING) AS updated_industry,
     CAST (NULL AS STRING) AS updated_position,
-    DATE'{actual_date}' AS actual_date,
-    is_non_indiv_flag,
-    is_dosri_flag,
-    is_enfis_flag,
-    is_dnc_flag,
-    is_risk_industry_flag,
-    client_segment_name,
-    is_card_canc_12m_flag,
-    is_with_credit_card_flag,
-    is_with_cc_application_flag,
-    is_with_cc_propensity_flag,
-    depo_mob_criteria_pass_flag,
-    adb_3m_avg,
-    is_with_pl_acct_woff_flag
+    DATE'{actual_date}' AS actual_date
 FROM src
 INNER JOIN final_offer fo
     ON src.bbn = fo.bbn

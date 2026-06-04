@@ -22,16 +22,15 @@ WITH casa_to_al_stp_not_yet_expired AS (
 , src AS (
     SELECT
         base.*,
-        ROW_NUMBER() OVER (
-            PARTITION BY base.bbn
-            ORDER BY base.bbn
-        ) AS rn
+        ROW_NUMBER() OVER (PARTITION BY base.bbn ORDER BY base.bbn) AS rn
     FROM staging_cross_sell_base base
     WHERE
-        base.bbn IS NOT NULL
+        base.bbn is not null
 
         -- ==========================================
-        -- MOVED TO DYNAMIC JSON RULES
+        -- INJECTED DYNAMIC JSON RULES
+        -- ==========================================
+        AND {dynamic_json_rules}
         -- ==========================================
 
         AND NOT EXISTS (
@@ -39,7 +38,6 @@ WITH casa_to_al_stp_not_yet_expired AS (
             FROM casa_to_al_stp_not_yet_expired a
             WHERE a.bbn = base.bbn
         )
-
         AND NOT EXISTS (
             SELECT 1
             FROM casa_to_cc_ptb_not_yet_expired c
@@ -101,20 +99,8 @@ WITH casa_to_al_stp_not_yet_expired AS (
             WHEN src.priority_mobile_no IS NOT NULL THEN 'Y'
             ELSE 'N'
         END AS is_mobile_valid_flag,
-
         src.expiry_date,
-        DATE'{actual_date}' AS actual_date,
-
-        -- ==========================================
-        -- PASS-THROUGH COLUMNS FOR JSON ENGINE
-        -- ==========================================
-        src.is_non_indiv_flag,
-        src.is_with_al_application_12m_flag,
-        src.is_dosri_flag,
-        src.is_no_segment_flag,
-        src.is_with_al_flag,
-        src.age
-
+        DATE'{actual_date}' AS actual_date
     FROM src
     INNER JOIN bbn_need_new bn
         ON src.bbn = bn.bbn
@@ -197,17 +183,6 @@ SELECT
             THEN 'Y'
         ELSE 'N'
     END AS is_email_valid_flag,
-
-    -- ==========================================
-    -- PASS-THROUGH COLUMNS FOR JSON ENGINE
-    -- ==========================================
-    is_non_indiv_flag,
-    is_with_al_application_12m_flag,
-    is_dosri_flag,
-    is_no_segment_flag,
-    is_with_al_flag,
-    age,
-
     expiry_date,
     actual_date
-    FROM output_without_for_branch_and_email_valid_flag
+FROM output_without_for_branch_and_email_valid_flag

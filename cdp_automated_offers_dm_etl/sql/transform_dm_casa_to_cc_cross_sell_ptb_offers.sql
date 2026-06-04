@@ -35,21 +35,20 @@ WITH casa_to_cc_stp_not_yet_expired AS (
         base.total_relationship_balance_value,
         base.cust_mob_count,
         base.expiry_date,
-        base.actual_date,
-        base.is_non_indiv_flag,
-        base.is_with_cc_propensity_flag,
-        base.is_dosri_flag,
-        base.is_with_credit_card_flag,
-        base.is_with_cc_application_flag,
-        base.client_segment_name,
-        base.age
+        base.actual_date
     FROM staging_cross_sell_base base
     LEFT JOIN casa_to_cc_stp_not_yet_expired stp_casa_to_cc
         ON base.bbn = stp_casa_to_cc.bbn
     LEFT JOIN casa_to_cc_ptb_not_yet_expired ptb_casa_to_cc
         ON base.bbn = ptb_casa_to_cc.bbn
-    WHERE base.bbn IS NOT NULL
-        AND base.bbn <> ''
+    WHERE 
+        -- ==========================================
+        -- INJECTED DYNAMIC JSON RULES
+        -- ==========================================
+        {dynamic_json_rules}
+        -- ==========================================
+
+        -- Join structural filters retained
         AND stp_casa_to_cc.bbn IS NULL
         AND ptb_casa_to_cc.bbn IS NULL
 )
@@ -143,14 +142,7 @@ SELECT
     CAST(NULL AS STRING) AS campaign_code,
     COALESCE(aj.is_contacted, 0) AS is_cust_contacted_3m_flag,
     base.expiry_date,
-    base.actual_date,
-    is_non_indiv_flag,
-    is_with_cc_propensity_flag,
-    is_dosri_flag,
-    is_with_credit_card_flag,
-    is_with_cc_application_flag,
-    client_segment_name,
-    age
+    base.actual_date
 FROM ptb_casa_to_cc_base base
 CROSS JOIN last_max_offer
 LEFT JOIN depo_clusters_v2
