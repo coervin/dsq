@@ -16,9 +16,9 @@ transform_dm_casa_to_cc_cross_sell_stp_offers = (
     Table.transformer()
     .with_filename("transform_dm_casa_to_cc_cross_sell_stp_offers")
     .with_result_name("interim_df")
-    .with_result_type(TaskResultType.DATAFRAME)
+    .with_result_type(TaskResultType.SQL_TO_DATAFRAME)
     # Pass the generated SQL string as a parameter to inject into the .sql file
-    .with_params(
+    .add_kwargs(
         dynamic_json_rules=get_dynamic_sql_condition(rules_file="dm_casa_to_cc_cross_sell_stp_offers.json") 
     )
 )

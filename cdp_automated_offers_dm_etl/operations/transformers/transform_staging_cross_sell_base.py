@@ -16,9 +16,9 @@ transform_staging_cross_sell_base = (
     Table.transformer()
     .with_filename("transform_staging_cross_sell_base")
     .with_result_name("interim_df")
-    .with_result_type(TaskResultType.DATAFRAME)
-    # Pass the generated SQL string as a parameter to inject into the .sql file
-    .with_params(
-        dynamic_json_rules=get_dynamic_sql_condition(rules_file="staging_cross_sell_base.json") 
-    )
+    .with_result_type(TaskResultType.SQL_TO_DATAFRAME)
+    # # Pass the generated SQL string as a parameter to inject into the .sql file
+    # .add_kwargs(
+    #     dynamic_json_rules=get_dynamic_sql_condition(rules_file="staging_cross_sell_base.json") 
+    # )
 )
