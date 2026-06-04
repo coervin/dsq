@@ -9,8 +9,8 @@
     },
     {
       "field": "is_non_indiv_flag",
-      "operator": "=",
-      "value": 0
+      "operator": "IN",
+      "value": [0, "0"]
     },
     {
       "field": "is_with_hl_application_flag",

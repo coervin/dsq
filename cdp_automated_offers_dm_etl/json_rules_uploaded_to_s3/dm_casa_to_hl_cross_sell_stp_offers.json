@@ -1,80 +1,42 @@
 {
   "enabled": true,
-  "version": "1",
-  "logic": "AND",
+  "version": "2",
+  "logic": "OR",
   "rules": [
     {
-      "field": "bbn",
-      "operator": "IS NOT NULL"
-    },
-    {
-      "field": "is_non_indiv_flag",
-      "operator": "=",
-      "value": 0
-    },
-    {
-      "field": "is_dosri_flag",
-      "operator": "=",
-      "value": 0
-    },
-    {
-      "field": "is_enfis_flag",
-      "operator": "=",
-      "value": 0
-    },
-    {
-      "field": "is_dnc_flag",
-      "operator": "=",
-      "value": 0
-    },
-    {
-      "field": "is_risk_industry_flag",
-      "operator": "=",
-      "value": 0
-    },
-    {
-      "field": "client_segment_name",
-      "operator": "!= (IGNORE CASE TRIM)",
-      "value": "WEALTH"
-    },
-    {
-      "field": "age",
-      "operator": "BETWEEN",
-      "value": [21, 55]
-    },
-    {
-      "field": "is_with_salad_flag",
-      "operator": "=",
-      "value": 0
-    },
-    {
-      "field": "is_with_csl_flag",
-      "operator": "=",
-      "value": 0
-    },
-    {
-      "field": "is_with_pl_acct_woff_flag",
-      "operator": "=",
-      "value": 0
-    },
-    {
-      "field": "adb_3m_avg",
-      "operator": ">=",
-      "value": 125000
-    },
-    {
-      "logic": "OR",
+      "logic": "AND",
       "rules": [
-        {
-          "field": "b_score_cc_value",
-          "operator": "<=",
-          "value": 0
-        },
-        {
-          "field": "b_score_cc_value",
-          "operator": ">=",
-          "value": 581
-        }
+        { "field": "bbn", "operator": "IS NOT NULL" },
+        { "field": "is_non_indiv_flag", "operator": "=", "value": 0 },
+        { "field": "is_dosri_flag", "operator": "=", "value": 0 },
+        { "field": "is_enfis_flag", "operator": "=", "value": 0 },
+        { "field": "is_dnc_flag", "operator": "=", "value": 0 },
+        { "field": "is_risk_industry_flag", "operator": "=", "value": 0 },
+        { "field": "client_segment_name", "operator": "!= (IGNORE CASE TRIM)", "value": "WEALTH" },
+        { "field": "age", "operator": "BETWEEN", "value": [21, 55] },
+        { "field": "is_with_salad_flag", "operator": "=", "value": 0 },
+        { "field": "is_with_csl_flag", "operator": "=", "value": 0 },
+        { "field": "is_with_pl_acct_woff_flag", "operator": "=", "value": 0 },
+        { "field": "adb_3m_avg", "operator": ">=", "value": 125000 },
+        { "field": "b_score_cc_value", "operator": "<=", "value": 0 }
+      ]
+    },
+    {
+      "logic": "AND",
+      "rules": [
+        { "field": "bbn", "operator": "IS NOT NULL" },
+        { "field": "is_non_indiv_flag", "operator": "=", "value": 0 },
+        { "field": "is_dosri_flag", "operator": "=", "value": 0 },
+        { "field": "is_enfis_flag", "operator": "=", "value": 0 },
+        { "field": "is_dnc_flag", "operator": "=", "value": 0 },
+        { "field": "is_risk_industry_flag", "operator": "=", "value": 0 },
+        { "field": "client_segment_name", "operator": "!= (IGNORE CASE TRIM)", "value": "WEALTH" },
+        { "field": "age", "operator": "BETWEEN", "value": [21, 55] },
+        { "field": "is_with_salad_flag", "operator": "=", "value": 0 },
+        { "field": "is_with_csl_flag", "operator": "=", "value": 0 },
+        { "field": "is_with_pl_acct_woff_flag", "operator": "=", "value": 0 },
+        { "field": "adb_3m_avg", "operator": ">=", "value": 125000 },
+        { "field": "b_score_cc_value", "operator": ">=", "value": 581 }
       ]
     }
   ]
