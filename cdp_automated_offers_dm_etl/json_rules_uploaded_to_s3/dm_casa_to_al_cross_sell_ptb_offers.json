@@ -48,7 +48,7 @@
     {
       "field": "full_name",
       "operator": "NOT RLIKE (IGNORE CASE)",
-      "value": "(EMPLOYEES OF|EMPLOY|EMP NO |EMP NO\\.|EMP, NO\\.|EMP NO,|EMP\\. NO,|EMP |EMP-|EMP\\.|EMP\\(|EMP #|EMP#|EMP#\\(|EMP,|EMP\\. # |EMP, \\(|EP # |,, EMP)"
+      "value": "(EMPLOYEES OF|EMPLOY|EMP NO |EMP NO\\\\.|EMP, NO\\\\.|EMP NO,|EMP\\\\. NO,|EMP |EMP-|EMP\\\\.|EMP\\\\(|EMP #|EMP#|EMP#\\\\(|EMP,|EMP\\\\. # |EMP, \\\\(|EP # |,, EMP)"
     }
   ]
 }
