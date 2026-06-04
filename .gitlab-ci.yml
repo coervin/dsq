@@ -1,0 +1,4 @@
+include:
+  - project: 'cdp/cdp-gitlab-pipelines'
+    ref: 'feature/xnl-update-cicd-pipeline'
+    file: '/templates/spark-app.yml'

@@ -1,0 +1,8 @@
+[run]
+omit =
+    */jobs/*
+    */config/*
+    */operations/initializers/*
+    */operations/loaders/*
+    */tests/*
+    */main.py*

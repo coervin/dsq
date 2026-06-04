@@ -1,0 +1,14 @@
+--extra-index-url https://nexus.sbonline.ph/repository/cdp-pypi/simple/
+xnl[spark]==0.1.10
+cdp-core-pyspark-migration-tool==1.0.0
+cdp-core-pyspark-data-quality==3.0.0
+
+# linting
+black
+flake8
+pylint
+bandit
+
+# test
+pytest
+pytest-cov
