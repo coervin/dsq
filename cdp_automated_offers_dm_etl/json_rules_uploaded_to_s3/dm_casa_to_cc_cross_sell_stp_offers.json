@@ -1,6 +1,6 @@
 {
   "enabled": true,
-  "version": "2",
+  "version": "3",
   "logic": "OR",
   "rules": [
     {
@@ -33,7 +33,7 @@
         { "field": "is_enfis_flag", "operator": "=", "value": 0 },
         { "field": "is_dnc_flag", "operator": "=", "value": 0 },
         { "field": "is_risk_industry_flag", "operator": "=", "value": 0 },
-        { "field": "client_segment_name", "operator": "!= (IGNORE CASE TRIM)", "value": "WEALTH" },
+        { "field": "client_segment_name", "operator": "!=", "value": "WEALTH" },
         { "field": "is_card_canc_12m_flag", "operator": "=", "value": 0 },
         { "field": "is_with_credit_card_flag", "operator": "=", "value": 0 },
         { "field": "is_with_cc_application_flag", "operator": "=", "value": 0 },
